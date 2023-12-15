@@ -4,7 +4,7 @@ A Cog wrapper for Marigold, a diffusion model and associated fine-tuning protoco
 
 ## API Usage
 
-You need to have Cog and Docker installed to run this model locally. Follow the [model pushing guide](https://replicate.com/docs/guides/push-a-model) to push your own fork of Marigold to [Replicate](https://replicate.com). To use the model, simply provide upload the image (ideally RGB or grayscale) you would like to perform depth estimation for. The API returns two depth map images - one grayscale and one spectral.
+You need to have Cog and Docker installed to run this model locally. Follow the [model pushing guide](https://replicate.com/docs/guides/push-a-model) to push your own fork of Marigold to [Replicate](https://replicate.com). To use the model, simply provide the image (ideally RGB or grayscale) you would like to perform depth estimation for. The API returns two depth map images - one grayscale and one spectral.
 
 To build the docker image with cog and run a prediction:
 ```bash
@@ -18,11 +18,11 @@ cog run -p 5000 python -m cog.server.http
 
 Input parameters are as follows:  
 - **image:** RGB or grayscale input image for the model, use an RGB image for best results.  
-- **resize_input:** whether to resize the input image to max resolution of 768, default to `True`.  
+- **resize_input:** whether to resize the input image to max resolution of 768 x 768 pixels, default to `True`.  
 - **num_infer:** number of inferences to be performed. if >1, multiple depth predictions are ensembled. A higher number yields better results but runs slower.   
 - **denoise_steps:** number of inference denoising steps, more steps results in higher accuracy but slower inference speed.  
 - **regularizer_strength:** ensembling parameter, weight of optimization regularizer.  
-- **reduction_method:** ensembling parameter, method to merge aligned depth maps. Choose between `["mean", "medium"]`.  
+- **reduction_method:** ensembling parameter, method to merge aligned depth maps. Choose between `["mean", "median"]`.  
 - **max_iter:** ensembling parameter, max number of optimization iterations.   
 - **seed:** (optional) seed for reproducibility, set to random if left as `None`.   
 
