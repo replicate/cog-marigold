@@ -1,0 +1,34 @@
+build:
+  gpu: true
+  cuda: "11.7"
+  system_packages:
+    - "libgl1-mesa-glx"
+  python_version: "3.10"
+  python_packages:
+    - "scipy"  
+    - "torch==2.0.1"
+    - "torchaudio"
+    - "torchvision"
+    - "torchshow"
+    - "diffusers==0.20.1"
+    - "opencv-python==4.7.0.72"
+    - "transformers==4.32.1"
+    - "accelerate==0.22.0"
+    - "xformers==0.0.21"
+    - "trimesh==3.23.5"
+    - "h5py"
+    - "matplotlib"
+    - "numpy==1.26.1"
+    - "omegaconf"
+    - "tqdm"
+    - "pandas"
+    - "scipy==1.11.3"
+    - "tabulate"
+    - "tensorboard"
+    - "triton"  
+    - "wandb==0.14.0"
+  run:
+    - curl -o /usr/local/bin/pget -L "https://github.com/replicate/pget/releases/download/v0.0.1/pget" 
+    - chmod +x /usr/local/bin/pget
+
+predict: "predict.py:Predictor"
